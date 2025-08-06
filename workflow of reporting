@@ -1,0 +1,156 @@
+📬 n8n SMTP Email Setup: Visual Workflow Guide
+Here’s what you need:
+
+🧩 Workflow Nodes
+csharp
+Copy
+Edit
+[Trigger Node (e.g., Webhook / Cron)]
+        ↓
+[Email Send Node (SMTP)]
+✅ Step-by-Step Setup
+1️⃣ Add a Trigger Node
+Use any of these:
+
+Cron → To send daily summary emails.
+
+Webhook → To trigger alerts from your analysis agents.
+
+2️⃣ Add “Email Send” Node
+🛠️ Basic Setup:
+Mode: SMTP
+
+SMTP Host: smtp.gmail.com (or Outlook / custom provider)
+
+SMTP Port: 587 (for TLS) or 465 (for SSL)
+
+Secure: ✅ true (for Gmail, use SSL or TLS)
+
+User: your.email@gmail.com
+
+Password: your_app_password (NOT your Gmail login — use App Passwords)
+
+💌 Email Details:
+From Email: your.email@gmail.com
+
+To Email: recipient@example.com (or dynamic like from a parameter)
+
+Subject: 🚨 Stock Alert: {{ $json.symbol }}
+
+Text:
+
+txt
+Copy
+Edit
+Hey Trader,
+
+Here's your stock alert for {{ $json.symbol }}:
+
+Signal: {{ $json.signal }}
+Sentiment: {{ $json.sentiment }}
+
+📈📉 Happy Trading!
+🧠 Sample Input Data (for test run)
+From a previous node (e.g., Analysis Agent), you might pass:
+
+json
+Copy
+Edit
+{
+  "symbol": "TSLA",
+  "signal": "Buy - RSI < 30",
+  "sentiment": "Positive"
+}
+🔗 Example Workflow (JSON Export)
+Here’s a copy-paste-ready n8n workflow snippet you can import:
+
+📄 stock_alert_email.json (Short version)
+json
+Copy
+Edit
+{
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "trigger",
+      "name": "Cron Trigger",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "parameters": {
+        "triggerTimes": [
+          {
+            "mode": "everyX",
+            "value": 10,
+            "unit": "minutes"
+          }
+        ]
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "your.email@gmail.com",
+        "toEmail": "recipient@gmail.com",
+        "subject": "🚨 Stock Alert: {{ $json.symbol }}",
+        "text": "Signal: {{ $json.signal }}\nSentiment: {{ $json.sentiment }}",
+        "options": {}
+      },
+      "id": "email",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [500, 300],
+      "credentials": {
+        "smtp": {
+          "id": "your-cred-id",
+          "name": "Gmail SMTP"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Cron Trigger": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
+To import:
+
+Click on 🧠 “Import” on the top right corner in n8n
+
+Paste the JSON above
+
+Replace your.email@gmail.com, recipient@gmail.com, and set the SMTP credentials in the Email node.
+
+🔐 Credentials Setup (1-time)
+Go to Credentials → SMTP
+
+Click New Credentials
+
+Fill:
+
+Host: smtp.gmail.com
+
+Port: 465 or 587
+
+User: your.email@gmail.com
+
+Password: App Password from Google
+
+Then attach it to the Email Node in the workflow.
+
+Let me know if:
+
+You want to send HTML email
+
+You want to attach PDF or chart reports
+
+You want conditional alerts (like RSI < 30 only)
