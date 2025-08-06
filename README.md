@@ -171,7 +171,7 @@ D --> E[🚨 Real-Time Alert Agent]
 D --> F[⏳ Backtesting Agent]
 E --> G[📈 Reporting Agent]
 F --> G
-D --> G
+
 ```
 
 ---
