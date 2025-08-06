@@ -1,0 +1,53 @@
+## ❌ Why the Task Couldn't Be Fully Completed
+
+Despite understanding the goal of the project, several blockers and constraints made it difficult to fully complete the task within the available time. Below are the key challenges:
+
+### ⚠️ 1. Lack of Platform Familiarity
+
+* The task required working with **n8n**, a workflow automation tool.
+* Many of us, including myself, had **no prior experience** with n8n.
+* Understanding nodes, triggers, data handling, and workflows took considerable time.
+
+### 📦 2. Unclear Requirements
+
+* The problem statement was broad and included multiple data sources, agent types, and functionalities.
+* It was unclear whether to focus on **one stock (like TSLA)** or the **entire dataset** of historical tickers.
+* The expected format/output of agents (alert, report, etc.) was not well-defined.
+
+### 🧠 3. Steep Learning Curve
+
+* The stack involved **Python, APIs, n8n, machine learning, and data visualization**.
+* Each of these has its own complexity, making it hard to learn and implement everything in parallel.
+
+### 🔄 4. Constant Context Switching
+
+* Switching between datasets (CSV, API), tools (Python, n8n, Git), and components (collection, analysis, alerting) slowed progress significantly.
+* No single part was fully completed before jumping into the next, due to lack of clarity or technical issues.
+
+### 🕐 5. Time Constraints
+
+* There wasn’t enough time to:
+
+  * Explore the tools and platforms.
+  * Debug issues with node configuration and integrations.
+  * Understand and organize the dataset (which contains thousands of files).
+
+### 📉 6. No Working End-to-End Flow
+
+* A complete working pipeline (e.g., collect TSLA data → analyze RSI → send alert) was not set up at the beginning.
+* Without that early success, momentum and clarity suffered throughout the development process.
+
+### 🤝 7. Lack of Collaborative Guidance
+
+* This task required **multi-agent thinking** and **integration across components**.
+* Due to limited shared understanding and documentation, collaboration didn't help much in reducing confusion.
+
+---
+
+## ✅ What Was Attempted
+
+* Initial **Data Collection Agent** was designed using n8n.
+* Real-time data from **Alpha Vantage API** was connected using the `HTTP Request` node.
+* Historical stock data (CSV files) was explored and loaded.
+* Git setup and partial automation were attempted with `README` documentation.
+
