@@ -163,10 +163,14 @@ plt.title("AAPL Price Trend")
 
 ```mermaid
 graph TD
-A[Cron Trigger] --> B[Data Collection Agent]
-B --> C[Analysis Agent]
-C --> D[Alert Agent]
-C --> E[Reporting Agent]
+
+A[⚙️ User Configuration Dashboard] --> B[Cron Trigger / Event Trigger]
+B --> C[📥 Data Collection Agent]
+C --> D[📊 Analysis Agent]
+D --> E[🚨 Real-Time Alert Agent]
+D --> F[📈 Daily Reporting Agent]
+D --> G[⏳ Backtesting Agent]
+
 ```
 
 ---
