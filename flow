@@ -1,11 +1,1 @@
-graph TD
 
-A[🕐 Cron Trigger / Scheduler] --> B[📥 Data Collection Agent]
-B --> C[📊 Analysis Agent]
-
-C --> D[🚨 Alert Agent]
-C --> E[📈 Backtesting Module]
-D --> F[📤 Reporting Agent]
-E --> F
-
-F --> G[📬 Notification System (Email/SMS)]
