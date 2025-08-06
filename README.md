@@ -1,4 +1,4 @@
-Great! Here's a detailed `README.md` for your **entire agentic AI stock market system**, covering:
+Great! Here's a detailed `README.md` for  **entire agentic AI stock market system**, covering:
 
 1. ✅ **Data Collection Agent**
 2. 📈 **Analysis Agent** (Technical + Sentiment + Risk)
