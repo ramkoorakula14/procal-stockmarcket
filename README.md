@@ -168,9 +168,10 @@ A[⚙️ User Configuration Dashboard] --> B[Cron Trigger / Event Trigger]
 B --> C[📥 Data Collection Agent]
 C --> D[📊 Analysis Agent]
 D --> E[🚨 Real-Time Alert Agent]
-D --> F[📈 Daily Reporting Agent]
-D --> G[⏳ Backtesting Agent]
-
+D --> F[⏳ Backtesting Agent]
+E --> G[📈 Reporting Agent]
+F --> G
+D --> G
 ```
 
 ---
