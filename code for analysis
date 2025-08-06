@@ -1,0 +1,80 @@
+import os
+import pandas as pd
+from analysis.technical_analysis import compute_technical_indicators, generate_signals
+from analysis.sentiment_analysis import analyze_sentiment
+
+DATA_FOLDER = "data_collection/historical_data"
+
+def analyze_all_symbols():
+    results = []
+
+    for filename in os.listdir(DATA_FOLDER):
+        if filename.endswith(".csv"):
+            symbol = filename.replace(".csv", "").upper()
+            filepath = os.path.join(DATA_FOLDER, filename)
+            
+            try:
+                df = pd.read_csv(filepath)
+                if df.empty or 'Close' not in df.columns:
+                    print(f"⚠️ Skipping {symbol} - invalid or empty file")
+                    continue
+
+                df = compute_technical_indicators(df)
+                signals = generate_signals(df)
+
+                dummy_news = [
+                    f"{symbol} stock shows strength",
+                    f"Analyst upgrades {symbol} to buy"
+                ]
+                sentiment = analyze_sentiment(dummy_news)
+
+                results.append({
+                    "Symbol": symbol,
+                    "Signals": signals,
+                    "Sentiment": sentiment
+                })
+
+                print(f"✅ Analyzed: {symbol}")
+
+            except Exception as e:
+                print(f"❌ Error processing {symbol}: {str(e)}")
+
+    return results
+
+
+if __name__ == "__main__":
+    summary = analyze_all_symbols()
+    print("\n📊 FINAL ANALYSIS SUMMARY 📊")
+    for res in summary:
+        print(f"\n🧠 {res['Symbol']}")
+        print(f"📈 Signals: {res['Signals']}")
+        print(f"📰 Sentiment: {res['Sentiment']}")
+
+
+
+📁 Repo Folder Structure (for reference):
+Copy
+Edit
+your-repo/
+├── analysis/
+│   ├── technical_analysis.py
+│   ├── sentiment_analysis.py
+│   └── multi_symbol_analysis.py
+├── data_collection/
+│   └── historical_data/
+│       ├── AAPL.csv
+│       ├── TSLA.csv
+│       └── ...
+🐍 Install the required Python packages (put in README too!)
+bash
+Copy
+Edit
+pip install pandas talib vaderSentiment
+🧠 Want to add?
+✅ Save output to CSV or JSON?
+
+✅ Generate plots and graphs?
+
+✅ Real alerts sent to n8n/email/telegram?
+
+✅ Run this from your GitHub Actions every day?
